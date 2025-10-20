@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2229226105661639202}
   - component: {fileID: 7124488103280315765}
   - component: {fileID: -121794644318071427}
+  - component: {fileID: 3513957849345269406}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Enemy
@@ -165,7 +166,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 6
+  m_Constraints: 4
 --- !u!114 &-121794644318071427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,3 +184,18 @@ MonoBehaviour:
   damage: 1
   enemySprite: {fileID: -3975290170696243003, guid: 291fbfb531d9a294885691b17a13c15e, type: 3}
   direction: 1
+--- !u!114 &3513957849345269406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4039783995226338504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb13b957e8157d4fb2a4dfd435e50ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridAdherence
+  rowData: {fileID: 0}
+  currentRow: 0
+  enemy: {fileID: 0}

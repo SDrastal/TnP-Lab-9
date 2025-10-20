@@ -17,6 +17,7 @@ public class IEnemy : MonoBehaviour
     private BoxCollider2D boxCollider;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+    private ProjectileObjectPool projectilePool;
 
 
     void Awake()
@@ -24,6 +25,7 @@ public class IEnemy : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        projectilePool = FindAnyObjectByType<ProjectileObjectPool>();
 
         gameObject.tag = "Enemy";
         Move();
@@ -32,12 +34,14 @@ public class IEnemy : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Edge"))
-            onEdge.Invoke();
-        
+        {
+            onEdge?.Invoke();
+            Debug.Log("Enemy reached edge.");
+        }
         if (other.gameObject.CompareTag("Projectile"))
         {
             TakeDamage(1);
-            Destroy(other.gameObject);
+            projectilePool.ReturnProjectile(other.gameObject);
         }
     }
 
@@ -46,7 +50,7 @@ public class IEnemy : MonoBehaviour
         health -= damageAmount;
         if (health <= 0)
         {
-            onDestroyed.Invoke();
+            onDestroyed?.Invoke();
             Destroy(gameObject);
         }
     }

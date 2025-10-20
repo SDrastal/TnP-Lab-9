@@ -30,7 +30,19 @@ public class RowData : MonoBehaviour
 
     void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         float rowHeight = (topY - bottomY) / (numberOfRows - 1);
+        rowYPositions = new float[numberOfRows];
+        rowDirection = new int[numberOfRows];
         for (int i = 0; i < numberOfRows; i++)
         {
             float yPos = topY - i * rowHeight;

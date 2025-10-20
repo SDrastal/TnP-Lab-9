@@ -28,6 +28,7 @@ public class ProjectileObjectPool : MonoBehaviour
         {
             GameObject projectile = projectilePool.Dequeue();
             projectile.SetActive(true);
+            StartCoroutine(ReturnProjectileAfterTime(projectile, 5f));
             return projectile;
         }
         else
@@ -41,5 +42,11 @@ public class ProjectileObjectPool : MonoBehaviour
     {
         projectilePool.Enqueue(projectile);
         projectile.SetActive(false);
+    }
+
+    private IEnumerator ReturnProjectileAfterTime(GameObject projectile, float time)
+    {
+        yield return new WaitForSeconds(time);
+        ReturnProjectile(projectile);
     }
 }
