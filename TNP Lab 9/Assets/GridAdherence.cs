@@ -14,6 +14,7 @@ public class GridAdherence : MonoBehaviour
         rowData = RowData.Instance;
         currentRow = 0;
         enemy = GetComponent<IEnemy>();
+        enemy.onEdge += MoveDownRow;
     }
 
     void MoveDownRow()

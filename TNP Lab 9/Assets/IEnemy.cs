@@ -11,8 +11,8 @@ public class IEnemy : MonoBehaviour
     [HideInInspector]
     public int direction = 1;
 
-    public UnityEvent onEdge;
-    public UnityEvent onDestroyed;
+    public event Action onEdge;
+    public event Action onDestroyed;
 
     private BoxCollider2D boxCollider;
     private Rigidbody2D rb;
@@ -21,12 +21,10 @@ public class IEnemy : MonoBehaviour
 
     void Awake()
     {
-        if (onEdge == null)
-            onEdge = new UnityEvent();
+        boxCollider = GetComponent<BoxCollider2D>();
+        rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
-        if (onDestroyed == null)
-            onDestroyed = new UnityEvent();
-            
         gameObject.tag = "Enemy";
         Move();
     }

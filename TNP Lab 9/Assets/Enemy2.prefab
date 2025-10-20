@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1517177863257399079}
   - component: {fileID: 2229226105661639202}
   - component: {fileID: 7124488103280315765}
+  - component: {fileID: -121794644318071427}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Enemy
@@ -78,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1676041315
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -6690884288088740916, guid: 291fbfb531d9a294885691b17a13c15e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -164,4 +165,21 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 6
+--- !u!114 &-121794644318071427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4039783995226338504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1bdcb99fe2297345971702d56cb0d64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy2
+  speed: 4
+  health: 3
+  damage: 1
+  enemySprite: {fileID: -3975290170696243003, guid: 291fbfb531d9a294885691b17a13c15e, type: 3}
+  direction: 1

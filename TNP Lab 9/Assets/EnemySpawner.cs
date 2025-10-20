@@ -32,7 +32,13 @@ public class EnemySpawner : MonoBehaviour
         Creator selectedCreator = creators[randomIndex];
         GameObject enemyObject = selectedCreator.FactoryMethod(enemyPrefabs[randomIndex]);
         IEnemy enemy = enemyObject.GetComponent<IEnemy>();
-        enemy.onDestroyed.AddListener(() => { points += 10; Debug.Log("Points: " + points); });
+        enemy.onDestroyed += AddPoints;
         enemyObject.transform.position = new Vector2(Random.Range(-8f, 8f), 12f);
+    }
+
+    void AddPoints()
+    {
+        points += 10;
+        Debug.Log("Points: " + points);
     }
 }
