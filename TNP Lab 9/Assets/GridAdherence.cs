@@ -1,25 +1,31 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 public class GridAdherence : MonoBehaviour
 {
-    private float[][] rowsY;
-    private int currentRow = 0;
+    [HideInInspector]
+    public RowData rowData;
+    [HideInInspector]
+    public int currentRow = 0;
+    [HideInInspector]
+    public IEnemy enemy;
 
-    void Start()
+    void Awake()
     {
-        for (int i = 0; i < rowsY.Length; i += 2)
+        rowData = RowData.Instance;
         currentRow = 0;
-        GetComponent<IEnemy>().onEdge.AddListener(MoveDownRow);
+        enemy = GetComponent<IEnemy>();
     }
 
     void MoveDownRow()
     {
         currentRow++;
-        if (currentRow < rowsY.Length)
+        if (currentRow < rowData.numberOfRows)
         {
-            Vector3 position = transform.position;
-            position.y = rowsY[currentRow];
+            Vector2 position = transform.position;
+            position.y = rowData.rowYPositions[currentRow];
             transform.position = position;
         }
+        enemy.direction = rowData.rowDirection[currentRow];
+        enemy.Move();
     }
 }

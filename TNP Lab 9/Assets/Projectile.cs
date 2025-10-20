@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Projectile : MonoBehaviour
 {
@@ -7,11 +8,19 @@ public class Projectile : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        StartCoroutine(DestroyAfterTime(5f));
     }
 
     public void Initialize(Vector2 direction, float speed)
     {
         this.speed = speed;
         rb.linearVelocity = direction.normalized * speed;
+    }
+
+    private IEnumerator DestroyAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(gameObject);
     }
 }
