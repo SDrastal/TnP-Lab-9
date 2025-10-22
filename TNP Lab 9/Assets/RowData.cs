@@ -3,19 +3,6 @@ using System.Collections.Generic;
 
 public class RowData : MonoBehaviour
 {
-    private static RowData instance;
-    public static RowData Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindAnyObjectByType<RowData>();
-            }
-            return instance;
-        }
-    }
-
     [HideInInspector]
     public float topY = 12f;
     [HideInInspector]
@@ -30,16 +17,6 @@ public class RowData : MonoBehaviour
 
     void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-
         float rowHeight = (topY - bottomY) / (numberOfRows - 1);
         rowYPositions = new float[numberOfRows];
         rowDirection = new int[numberOfRows];

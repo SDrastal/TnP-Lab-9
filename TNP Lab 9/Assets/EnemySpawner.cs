@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        rowData = RowData.Instance;
+        rowData = FindAnyObjectByType<RowData>();
 
         if (GetComponent<Enemy1Creator>() == null)
             gameObject.AddComponent<Enemy1Creator>();

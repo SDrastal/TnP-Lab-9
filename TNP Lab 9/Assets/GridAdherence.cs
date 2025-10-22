@@ -11,12 +11,7 @@ public class GridAdherence : MonoBehaviour
 
     void Awake()
     {
-        rowData = RowData.Instance;
-        if (rowData == null)
-        {
-            Debug.LogError("RowData instance not found in the scene.");
-            return;
-        }
+        rowData = FindAnyObjectByType<RowData>();
         currentRow = 0;
         enemy = GetComponent<IEnemy>();
         enemy.onEdge += MoveDownRow;
