@@ -1,2 +1,1 @@
-We implemented design patterns by using the Factory Design Pattern.
-Factory design pattern defines an abstract class and decides which class to instate.
+Saving and loading are contained in their own in-game managers and scripts, as well as being given their own input system, functioning completely seperately from the rest of the game's code besides a few small modifications to the EnemySpawner script.
