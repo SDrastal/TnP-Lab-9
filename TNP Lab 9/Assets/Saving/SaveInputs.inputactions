@@ -1,0 +1,55 @@
+{
+    "version": 1,
+    "name": "SaveInputs",
+    "maps": [
+        {
+            "name": "Game",
+            "id": "8ab0d65a-ede6-4221-9c8c-878f6b677c0c",
+            "actions": [
+                {
+                    "name": "Save",
+                    "type": "Button",
+                    "id": "fab76311-9c22-4ffe-beec-c5387dafa28a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Load",
+                    "type": "Button",
+                    "id": "d5c3aa83-43bb-4d21-b490-6fd16133e0e1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "25a9226f-9160-4da7-b156-6cdfad8fd9fa",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Save",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8539813a-3885-4399-992c-bf0804918c1b",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Load",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

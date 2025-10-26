@@ -5,11 +5,13 @@ public class EnemySpawner : MonoBehaviour
     public GameObject[] enemyPrefabs;
 
     private RowData rowData;
-    private int points = 0;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public int points = 0;
+    private TransformSaver transformSaver; // Added
+
     void Awake()
     {
         rowData = FindAnyObjectByType<RowData>();
+        transformSaver = FindAnyObjectByType<TransformSaver>(); // Added
 
         if (GetComponent<Enemy1Creator>() == null)
             gameObject.AddComponent<Enemy1Creator>();
@@ -34,11 +36,21 @@ public class EnemySpawner : MonoBehaviour
         IEnemy enemy = enemyObject.GetComponent<IEnemy>();
         enemy.onDestroyed += AddPoints;
         enemyObject.transform.position = new Vector2(Random.Range(-8f, 8f), 12f);
+
+        // Register the enemy's transform for saving
+        if (transformSaver != null)
+            transformSaver.enemyTransforms.Add(enemyObject.transform);
     }
 
     void AddPoints()
     {
         points += 10;
         Debug.Log("Points: " + points);
+    }
+
+    public int Points
+    {
+        get { return points; }
+        set { points = value; }
     }
 }
