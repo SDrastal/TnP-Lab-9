@@ -43,7 +43,21 @@ public class InventoryManager : MonoBehaviour
 
     public InventoryItem BinarySearchByID(int id)
     {
-        //Sam
+        items.Sort((a, b) => a.itemID.CompareTo(b.itemID));
+
+        int left = 0;
+        int right = items.Count - 1;
+
+        while (left <= right)
+        {
+            int mid = left + (right - left) / 2;
+            if (items[mid].itemID == id)
+                return items[mid];
+            else if (items[mid].itemID < id)
+                left = mid + 1;
+            else
+                right = mid - 1;
+        }
         return null;
     }
 
