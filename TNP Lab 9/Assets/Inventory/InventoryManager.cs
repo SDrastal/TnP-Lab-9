@@ -1,14 +1,15 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public InventoryItem[] items;
+    public List<InventoryItem> items;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         bool[] usedIDs = new bool[9999];
         usedIDs[0] = true; // Reserve ID 0 as invalid
-        items = FindObjectsByType<InventoryItem>(FindObjectsSortMode.None);
+        items = new List<InventoryItem>(FindObjectsByType<InventoryItem>(FindObjectsSortMode.None));
         foreach (InventoryItem item in items)
         {
             while (usedIDs[item.itemID])
@@ -22,7 +23,8 @@ public class InventoryManager : MonoBehaviour
         {
             Debug.Log(item.ToString());
         }
-        QuickSortByValue(0, items.Length - 1);
+        Debug.Log("---- After Sorting by Value ----");
+        QuickSortByValue(0, items.Count - 1);
         foreach (InventoryItem item in items)
         {
             Debug.Log(item.ToString());
@@ -83,5 +85,44 @@ public class InventoryManager : MonoBehaviour
         InventoryItem temp = items[i];
         items[i] = items[j];
         items[j] = temp;
+    }
+
+    public void AddItemToInventory(int id, string name, int value)
+    {
+        InventoryItem newItem = new(id, name, value);
+        items.Add(newItem);
+    }
+
+    public float CalculateTotalInventoryValue()
+    {
+        float totalValue = 0;
+        foreach (InventoryItem item in items)
+        {
+            totalValue += item.itemValue;
+        }
+        return totalValue;
+    }
+
+    public List<InventoryItem> FilterItemsByValueRange(float minValue, float maxValue)
+    {
+        List<InventoryItem> filteredItems = new List<InventoryItem>();
+        int lowerIndex = 0;
+        int upperIndex = items.Count - 1;
+
+        while (items[lowerIndex].itemValue < minValue)
+        {
+            lowerIndex++;
+        }
+
+        while (items[upperIndex].itemValue > maxValue)
+        {
+            upperIndex--;
+        }
+
+        for (int i = lowerIndex; i <= upperIndex; i++)
+        {
+            filteredItems.Add(items[i]);
+        }
+        return filteredItems;
     }
 }
