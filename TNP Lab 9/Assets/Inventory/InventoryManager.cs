@@ -33,7 +33,11 @@ public class InventoryManager : MonoBehaviour
 
     public InventoryItem LinearSearchByName(string name)
     {
-        //Jadyn
+        foreach(InventoryItem item in items)
+        {
+            if (item.itemName == name)
+                return item;
+        }
         return null;
     }
 
